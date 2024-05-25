@@ -1,10 +1,13 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.internal.BasicUserDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 interface UserRepository extends JpaRepository<User, Long> {
 
@@ -19,5 +22,11 @@ interface UserRepository extends JpaRepository<User, Long> {
                         .filter(user -> Objects.equals(user.getEmail(), email))
                         .findFirst();
     }
+    default List<BasicUserDto> getAllBasicUsers(){
+        return findAll().stream()
+                .map(user -> new BasicUserDto(user.getId(), user.getFirstName(), user.getLastName()))
+                .collect(Collectors.toList());
+    }
+
 
 }

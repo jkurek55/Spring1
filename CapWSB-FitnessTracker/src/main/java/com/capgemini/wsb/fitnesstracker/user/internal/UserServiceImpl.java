@@ -3,6 +3,7 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
+import com.capgemini.wsb.fitnesstracker.user.internal.BasicUserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,11 @@ class UserServiceImpl implements UserService, UserProvider {
         return userRepository.save(user);
     }
 
+    public void deleteUser(final Long userid){
+        userRepository.deleteById(userid);
+
+    }
+
     @Override
     public Optional<User> getUser(final Long userId) {
         return userRepository.findById(userId);
@@ -39,6 +45,12 @@ class UserServiceImpl implements UserService, UserProvider {
     @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();
+    }
+
+
+    @Override
+    public List<BasicUserDto> getAllBasicUsers() {
+        return userRepository.getAllBasicUsers();
     }
 
 }
