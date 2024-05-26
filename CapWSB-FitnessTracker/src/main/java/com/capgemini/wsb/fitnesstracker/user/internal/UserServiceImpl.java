@@ -3,13 +3,13 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
-import com.capgemini.wsb.fitnesstracker.user.internal.BasicUserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -37,10 +37,7 @@ class UserServiceImpl implements UserService, UserProvider {
         return userRepository.findById(userId);
     }
 
-    @Override
-    public Optional<User> getUserByEmail(final String email) {
-        return userRepository.findByEmail(email);
-    }
+
 
     @Override
     public List<User> findAllUsers() {
@@ -53,4 +50,51 @@ class UserServiceImpl implements UserService, UserProvider {
         return userRepository.getAllBasicUsers();
     }
 
+    @Override
+    public List<User> searchUserByEmail(String email){
+        return userRepository.searchUserByEmail(email);
+    }
+
+    @Override
+    public List<User> getOlderThan(int age){
+        return userRepository.getOlderThan(age);
+    }
+
+    @Override
+    public boolean updateUser(Long id, UserDto userDto){
+        User user = userRepository.findById(id).get();
+
+        if (userDto.firstName() != null)
+        {
+            user.setFirstName(userDto.firstName());
+        }
+
+        userRepository.save(user);
+        return true;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,11 +8,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-record UserDto(
+public record UserDto(
         @Nullable Long Id,
         String firstName,
         String lastName,
         @JsonFormat(pattern = "yyyy-MM-dd") LocalDate birthdate,
         String email) {
+
 }
 

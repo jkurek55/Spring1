@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.user.api;
 import com.capgemini.wsb.fitnesstracker.user.internal.BasicUserDto;
-
+import com.capgemini.wsb.fitnesstracker.user.internal.IDEmailUserDto;
+import com.capgemini.wsb.fitnesstracker.user.internal.UserDto;
 import java.util.List;
 
 
@@ -13,6 +14,12 @@ public interface UserService {
     User createUser(User user);
 
     public List<BasicUserDto> getAllBasicUsers();
+
+    public List<User> searchUserByEmail(String email);
+
+    public List<User> getOlderThan(int age);
+
+    public boolean updateUser(Long id, UserDto userDto);
     }
 
 

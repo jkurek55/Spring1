@@ -40,6 +40,20 @@ class UserController {
         return userService.getUser(id);
     }
 
+    @GetMapping("/get/idbyemail/{email}")
+    public List<IDEmailUserDto> searchUserByEmail(@PathVariable String email)
+    {
+        return userService.searchUserByEmail(email)
+                .stream()
+                .map(userMapper::toIDEmailUserDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/get/olderthan/{age}")
+    public List<User> getOlderThan(@PathVariable int age){
+        return userService.getOlderThan(age);
+    }
+
     @PostMapping("/add")
     public User addUser(@RequestBody UserDto userDto) {
 
@@ -50,10 +64,18 @@ class UserController {
         return newUser;
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public boolean deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return true;
     }
 
+    @PutMapping("/update/{id}")
+    public boolean updateUser(@PathVariable Long id, @RequestBody UserDto userDto){
+        return userService.updateUser(id, userDto);
+    }
+
 }
+
+
+
