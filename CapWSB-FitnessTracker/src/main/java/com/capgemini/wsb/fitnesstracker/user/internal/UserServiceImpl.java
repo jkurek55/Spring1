@@ -68,6 +68,18 @@ class UserServiceImpl implements UserService, UserProvider {
         {
             user.setFirstName(userDto.firstName());
         }
+        if (userDto.lastName() != null)
+        {
+            user.setLastName(userDto.lastName());
+        }
+        if (userDto.firstName() != null)
+        {
+            user.setBirthdate(userDto.birthdate());
+        }
+        if (userDto.firstName() != null)
+        {
+            user.setEmail(userDto.email());
+        }
 
         userRepository.save(user);
         return true;
