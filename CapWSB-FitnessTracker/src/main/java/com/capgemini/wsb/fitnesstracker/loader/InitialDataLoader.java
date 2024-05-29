@@ -89,7 +89,7 @@ class InitialDataLoader {
                                               ActivityType.RUNNING,
                                               10.5,
                                               8.2);
-            Training training2 = new Training(users.get(1),
+            Training training2 = new Training(users.get(0),
                                               sdf.parse("2024-01-18 15:30:00"),
                                               sdf.parse("2024-01-18 17:00:00"),
                                               ActivityType.CYCLING,

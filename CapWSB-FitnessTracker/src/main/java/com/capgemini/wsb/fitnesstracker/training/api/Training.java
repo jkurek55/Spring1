@@ -4,10 +4,7 @@ import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 @Entity
@@ -15,6 +12,7 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
+@Setter
 public class Training {
 
     @Id
@@ -37,10 +35,10 @@ public class Training {
     private ActivityType activityType;
 
     @Column(name = "distance")
-    private double distance;
+    private Double distance;
 
     @Column(name = "average_speed")
-    private double averageSpeed;
+    private Double averageSpeed;
 
     public Training(
             final User user,
@@ -56,5 +54,6 @@ public class Training {
         this.distance = distance;
         this.averageSpeed = averageSpeed;
     }
+
 
 }
