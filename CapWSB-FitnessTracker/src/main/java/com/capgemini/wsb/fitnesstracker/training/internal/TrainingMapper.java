@@ -14,7 +14,7 @@ public class TrainingMapper {
     TrainingTO toTrainingTO(Training training){
         return new TrainingTO(
                 training.getId(),
-                userMapper.toDto(training.getUser()),
+                training.getUser(),
                 training.getStartTime(),
                 training.getEndTime(),
                 training.getActivityType(),
@@ -25,11 +25,19 @@ public class TrainingMapper {
 
     public Training toTrainingEntity(TrainingTO trainingTO){
         return new Training(
-                userService.getUser(trainingTO.getUserDto().Id()).get(), trainingTO.getStartTime(), trainingTO.getEndTime(), trainingTO.getActivityType(), trainingTO.getDistance(), trainingTO.getAverageSpeed()
+                userService.getUser(trainingTO.getUser().getId()).get(), trainingTO.getStartTime(), trainingTO.getEndTime(), trainingTO.getActivityType(), trainingTO.getDistance(), trainingTO.getAverageSpeed()
         );
     }
 
-
-
+    public TrainingTO toTrainingToFromTrainingUserIdTO(TrainingUserIdTO trainingUserIdTO){
+        return new TrainingTO(
+                trainingUserIdTO.getId(),
+                trainingUserIdTO.getUser(),
+                trainingUserIdTO.getStartTime(),
+                trainingUserIdTO.getEndTime(),
+                trainingUserIdTO.getActivityType(),
+                trainingUserIdTO.getDistance(),
+                trainingUserIdTO.getAverageSpeed());
+    }
 
 }

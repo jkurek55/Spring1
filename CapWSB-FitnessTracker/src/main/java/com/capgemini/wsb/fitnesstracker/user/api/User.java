@@ -22,6 +22,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Nullable
+    @Getter
     private Long id;
 
     @Column(name = "first_name", nullable = false)
@@ -51,6 +52,7 @@ public class User {
         this.birthdate = birthdate;
         this.email = email;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

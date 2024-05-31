@@ -51,9 +51,9 @@ public class TrainingServiceImpl implements TrainingProvider {
     public Training editTraining(Long trainingId, TrainingTO trainingTO){
         Training training = trainingRepository.findById(trainingId).get();
 
-        if (trainingTO.getUserDto() != null)
+        if (trainingTO.getUser() != null)
         {
-            training.setUser(userMapper.toEntity(trainingTO.getUserDto()));
+            training.setUser(trainingTO.getUser());
         }
         if (trainingTO.getStartTime() != null)
         {

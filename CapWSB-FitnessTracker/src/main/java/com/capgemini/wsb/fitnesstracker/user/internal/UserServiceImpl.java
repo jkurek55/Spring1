@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,8 @@ public class UserServiceImpl implements UserService, UserProvider {
     }
 
     @Override
-    public List<User> getOlderThan(int age){
-        return userRepository.getOlderThan(age);
+    public List<User> getOlderThan(LocalDate date){
+        return userRepository.getOlderThan(date);
     }
 
     @Override

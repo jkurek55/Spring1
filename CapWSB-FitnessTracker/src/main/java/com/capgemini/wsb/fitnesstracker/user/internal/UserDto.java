@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public record UserDto(
-        @Nullable Long Id,
+        @Nullable Long id,
         String firstName,
         String lastName,
         @JsonFormat(pattern = "yyyy-MM-dd") LocalDate birthdate,

@@ -17,11 +17,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class TrainingTO {
+public class TrainingUserIdTO {
     private Long id;
 
     @Nullable
     private User user;
+
+
+    private Long userId;
 
     private Date startTime;
 

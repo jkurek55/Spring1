@@ -4,8 +4,10 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,7 +29,7 @@ class UserController {
                           .map(userMapper::toDto)
                           .toList();
     }
-    @GetMapping("/basic")
+    @GetMapping("/simple")
     public List<BasicUserDto> getBasicUserInfo() {
         return userService.findAllUsers()
                 .stream()
@@ -35,13 +37,14 @@ class UserController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public Optional<User> getUserInfo(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
+    //before tests
     @GetMapping("/get/idbyemail/{email}")
-    public List<IDEmailUserDto> searchUserByEmail(@PathVariable String email)
+    public List<IDEmailUserDto> searchUserByEmail2(@PathVariable String email)
     {
         return userService.searchUserByEmail(email)
                 .stream()
@@ -49,12 +52,24 @@ class UserController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/get/olderthan/{age}")
-    public List<User> getOlderThan(@PathVariable int age){
-        return userService.getOlderThan(age);
+    @GetMapping("/email")
+    public List<UserDto> searchUserByEmail(@RequestParam String email)
+    {
+        return userService.searchUserByEmail(email)
+                .stream()
+                //.map(userMapper::toIDEmailUserDto)
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-    @PostMapping("/add")
+
+    @GetMapping("/older/{date}")
+    public List<User> getOlderThan(@PathVariable LocalDate date){
+        return userService.getOlderThan(date);
+    }
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public User addUser(@RequestBody UserDto userDto) {
 
         // Demonstracja how to use @RequestBody
@@ -64,13 +79,14 @@ class UserController {
         return newUser;
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return true;
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public boolean updateUser(@PathVariable Long id, @RequestBody UserDto userDto){
         return userService.updateUser(id, userDto);
     }
