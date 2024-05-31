@@ -84,8 +84,8 @@ class InitialDataLoader {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Training training1 = new Training(users.get(0),
-                                              sdf.parse("2024-01-19 08:00:00"),
-                                              sdf.parse("2024-01-19 09:30:00"),
+                                              sdf.parse("2024-05-29 08:00:00"),
+                                              sdf.parse("2024-05-29 09:30:00"),
                                               ActivityType.RUNNING,
                                               10.5,
                                               8.2);

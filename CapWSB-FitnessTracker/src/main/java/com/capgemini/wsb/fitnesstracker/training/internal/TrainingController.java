@@ -3,7 +3,6 @@ package com.capgemini.wsb.fitnesstracker.training.internal;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
-import com.capgemini.wsb.fitnesstracker.user.internal.UserMapper;
 import com.capgemini.wsb.fitnesstracker.user.internal.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +23,6 @@ public class TrainingController {
     private final TrainingProvider trainingService;
     private final UserServiceImpl userService;
     private final TrainingMapper trainingMapper;
-    private final UserMapper userMapper;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 

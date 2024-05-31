@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class TrainingMapper {
-    private final UserMapper userMapper;
     private final UserServiceImpl userService;
     TrainingTO toTrainingTO(Training training){
         return new TrainingTO(

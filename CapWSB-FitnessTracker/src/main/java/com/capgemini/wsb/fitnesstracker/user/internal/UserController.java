@@ -23,7 +23,6 @@ class UserController {
 
     @GetMapping
     public List<UserDto> getAllUsers() {
-        //przekazanie do serwisu prosby
         return userService.findAllUsers()
                           .stream()
                           .map(userMapper::toDto)
@@ -38,8 +37,8 @@ class UserController {
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUserInfo(@PathVariable Long id) {
-        return userService.getUser(id);
+    public UserDto getUserInfo(@PathVariable Long id) {
+        return userMapper.toDto(userService.getUser(id).get());
     }
 
     //before tests
